@@ -1,13 +1,27 @@
 -module(webservice_handler).
--export([init/3, handle/2, terminate/2]).
+-compile(export_all).
 
-init({_Any, http}, Req, _) ->
-    {ok, Req, []}.
-%% {upgrade, protocol, cowboy_http_rest}.
+%% $ curl -H "Accept: text/plain" http://localhost:8080/ 
+%% HELLO WORLD!%
+%% $ curl -H "Accept: text/html" http://localhost:8080/     
+%% <html><head><title>TEST TITLE</title></head><body><h1>HELLO WORLD!</h1></body></html>%
 
-handle(Req, State) ->
-    {ok, Req2} = cowboy_http_req:reply(200, [], <<"HELLO WORLD!">>, Req),
-    {ok, Req2, State}.
+init({_Any, http}, _Req, _) ->
+    {upgrade, protocol, cowboy_http_rest}.
+
+known_methods(Req, State) ->
+    {['GET'], Req, State}.
+
+content_types_provided(Req, State) ->
+    {[{{<<"text">>, <<"plain">>, []}, to_text},
+      {{<<"text">>, <<"html">>, []}, to_html}], 
+     Req, State}.
+
+to_text(Req, State) ->
+    {<<"HELLO WORLD!">>, Req, State}.
+
+to_html(Req, State) ->
+    {<<"<html><head><title>TEST TITLE</title></head><body><h1>HELLO WORLD!</h1></body></html>">>, Req, State}.
 
 terminate(_Req, _State) ->
     ok.
