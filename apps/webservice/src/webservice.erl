@@ -16,7 +16,11 @@ stop() ->
 
 start(_Type, _Args) ->
     Dispatch = [
-                {'_', [{'_', webservice_handler, []}]}
+                {'_', [{[<<"problem">>], webservice_problem_handler, []},
+                       {[<<"problem">>, problem_id], webservice_problem_instance_handler, []},
+                       {[<<"problem">>, problem_id, <<"test">>, test_id], webservice_test_instance_handler, []},
+                       {[<<"problem">>, problem_id, <<"run">>, run_id], webservice_run_instance_handler, []}
+                      ]}
                ],
 
     cowboy:start_listener(my_http_listener, 100,

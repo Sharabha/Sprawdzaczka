@@ -1,0 +1,43 @@
+* problem/
+ - GET: returns a useless doc string
+ - POST "create_new" - redirects to a new problem, see GET problem/123/
+   curl -v -L -H "Accept: application/json" -H "Content-Type: application/json" -d '"create_new"' http://localhost:8080/problem/
+
+* problem/123/
+ - GET: returns object {"id": <id>, "tests": <array of IDs>}
+
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/404
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/777
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/999
+
+ - POST {"test": {"solution_input":"...", "checker_input":"...", "time_limit": 1230, "memory_limit": 1230}}) saves test
+
+   curl -v -L -H "Accept: application/json" -H "Content-Type: application/json" -d '{"test": {"solution_input":"...", "checker_input":"...",  "time_limit": 1230, "memory_limit": 1230}}' http://localhost:8080/problem/777/
+
+ - POST: {"run": {"language": "C", "solution": "main(){;}", "notify": "http://wontbecalledyet"}} - saves run
+
+   curl -v -L -H "Accept: application/json" -H "Content-Type: application/json" -d '{"run": {"language": "C", "solution": "main(){;}", "notify": "http://wontbecalledyet"}}' http://localhost:8080/problem/777/
+
+* problem/123/test/2/
+ - GET: returns a test body
+
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/777/test/101/
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/777/test/404/
+
+ - DELETE: deletes this test from problem (note: related runs may have become obsolete)
+ 
+   curl -v -L -X DELETE http://localhost:8080/problem/777/test/101
+
+* problem/123/run/3/
+ - GET: returns a run status: a table of tests and their statuses
+
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/777/run/302/
+   curl -v -L -H "Accept: application/json" http://localhost:8080/problem/777/run/404/
+
+ - POST: {"recheck": {"notify": "http://uri"}} clears run
+
+   curl -v -L -H "Accept: application/json" -d '{"recheck": {"notify": "http://uri"}}' http://localhost:8080/problem/777/run/302/
+
+ - DELETE: deletes run (optional, for whatever reason)
+
+   curl -v -L -X DELETE http://localhost:8080/problem/777/test/101
