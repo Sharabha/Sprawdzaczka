@@ -22,12 +22,11 @@ Both parts communicate with each other through RESTful web API.
 - Riak database (http://wiki.basho.com/Installation.html)
 
 #### Running project:
+``
 $ cd Sprawdzaczka
-
 $ ./rebar get-deps
-
 $ ./run.sh
-
+``
 Check http://localhost:8080/ (you should see hello world).
 
 ## License
