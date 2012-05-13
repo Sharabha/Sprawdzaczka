@@ -11,8 +11,7 @@ Project is split into two independently deployed components:
 - __Sharabha Portal__, based on [Ruby on Rails](http://www.rubyonrails.org)
 - __Sharabha Checker__, based on [Erlang](http://www.erlang.org)
 
-This is a repository of Sharabha Portal - website with user friendly interface, that treats Sharabha Checker as a service for running solutions.
-Both parts communicate with each other through RESTful web API.
+This is a repository of Sharabha Checker - a service for running solutions. It communicates with RESTful web API with Sharabha Portal.
 
 
 ## Checker README
