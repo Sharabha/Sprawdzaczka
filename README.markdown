@@ -30,6 +30,7 @@ $ ./run.sh
 
 Check http://localhost:8080/ (you should see hello world).
 
+## License
 
 ###### Copyright 2012 [Institute of Computer Science, University of Wrocław](http://www.ii.uni.wroc.pl)
 
