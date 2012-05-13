@@ -28,7 +28,7 @@ Both parts communicate with each other through RESTful web API.
 
 ``$ ./run.sh``
 
-Check http://localhost:8080/ (you should see hello world).
+Check [http://localhost:8080/](http://localhost:8080/) (you should see hello world).
 
 ## License
 
