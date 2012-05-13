@@ -24,9 +24,12 @@ Both parts communicate with each other through RESTful web API.
 #### Running project:
 ``
 $ cd Sprawdzaczka
+
 $ ./rebar get-deps
+
 $ ./run.sh
 ``
+
 Check http://localhost:8080/ (you should see hello world).
 
 ## License
