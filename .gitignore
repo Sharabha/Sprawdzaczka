@@ -2,3 +2,4 @@ ebin
 rel/sprawdzaczka
 deps
 .eunit
+*~
