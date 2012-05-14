@@ -23,9 +23,11 @@ This is a repository of Sharabha Checker - a service for running solutions. It c
 #### Running project:
 ``$ cd Sprawdzaczka``
 
-``$ ./rebar get-deps``
+``$ make``
 
-``$ ./run.sh``
+``$ make run``
+or
+``$ ./rel/sprawdzaczka/bin/sprawdzaczka console``
 
 Check [http://localhost:8080/](http://localhost:8080/) (you should see hello world).
 
